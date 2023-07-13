@@ -53,7 +53,7 @@ def merge_multiple_dataframe():
     # Ingest dataframe into output folder
     df.to_csv(os.path.join(output_folder_path, "finaldata.csv"), index=False)
 
-
+    # Log files used for further steps
     with open(os.path.join(output_folder_path, "ingestedfiles.txt"), "w") as text_file:
         text_file.write(",".join(file_names))
 
