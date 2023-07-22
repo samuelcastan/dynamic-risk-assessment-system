@@ -23,7 +23,7 @@ def train_model():
     df = pd.read_csv(os.path.join(dataset_csv_path, "finaldata.csv"))
 
     y = df.pop('exited')
-    X = df.drop(['corporation'], axis=1)
+    X = df[['lastmonth_activity', 'lastyear_activity', 'number_of_employees']]
     
 
     # use this logistic regression for training
