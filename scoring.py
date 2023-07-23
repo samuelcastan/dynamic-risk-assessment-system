@@ -38,8 +38,8 @@ def score_model():
 
     f1_score = metrics.f1_score(y_test, y_pred)
 
-    print(f1_score)
-
+    with open(os.path.join(metric_output_path, 'latestscore.txt'), 'w') as file:
+        file.write(str(f1_score))
 
 if __name__ == '__main__':
     
