@@ -2,6 +2,7 @@ import pandas as pd
 import pickle
 import os
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 import json
 
 # Load config.json and get path variables
@@ -21,22 +22,9 @@ def train_model():
     y = df.pop('exited')
     X = df[['lastmonth_activity', 'lastyear_activity', 'number_of_employees']]
 
-    # use this logistic regression for training
-    model = LogisticRegression(
-        C=1.0,
-        class_weight=None,
-        dual=False,
-        fit_intercept=True,
-        intercept_scaling=1,
-        l1_ratio=None,
-        max_iter=100,
-        n_jobs=None,
-        penalty='l2',
-        random_state=0,
-        solver='liblinear',
-        tol=0.0001,
-        verbose=0,
-        warm_start=False)
+    model = RandomForestClassifier(
+        n_estimators=1000
+    )
 
     # fit the logistic regression to your data\
     model.fit(X, y)
