@@ -5,22 +5,19 @@ Author: Samuel Castan
 Date: July, 2023
 """
 import pandas as pd
-import numpy as np
 import os
 import json
-from datetime import datetime
 
 
-#############Load config.json and get input and output paths
-with open('config.json','r') as f:
-    config = json.load(f) 
+# Load config.json and get input and output paths
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
 input_folder_path = config['input_folder_path']
 output_folder_path = config['output_folder_path']
 
 
-
-#############Function for data ingestion
+# Function for data ingestion
 def merge_multiple_dataframe():
     """
     Checks for datasets, compile them together, and write to an output file
@@ -54,10 +51,13 @@ def merge_multiple_dataframe():
     df.to_csv(os.path.join(output_folder_path, "finaldata.csv"), index=False)
 
     # Log files used for further steps
-    with open(os.path.join(output_folder_path, "ingestedfiles.txt"), "w") as text_file:
+    with open(
+        os.path.join(
+            output_folder_path,
+            "ingestedfiles.txt"),
+        "w"
+    ) as text_file:
         text_file.write(",".join(file_names))
-
-
 
 
 if __name__ == '__main__':
