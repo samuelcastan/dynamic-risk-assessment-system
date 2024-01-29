@@ -1,7 +1,6 @@
 import pandas as pd
 import pickle
 import os
-from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 import json
 
@@ -26,7 +25,7 @@ def train_model():
         n_estimators=1000
     )
 
-    # fit the logistic regression to your data\
+    # fit the model to your data
     model.fit(X, y)
 
     # write the trained model to your workspace in a
