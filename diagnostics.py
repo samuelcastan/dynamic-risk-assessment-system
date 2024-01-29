@@ -16,16 +16,36 @@ prod_deployment_path = os.path.join(config["prod_deployment_path"])
 
 
 # Function to get model predictions
-def model_predictions(model, X):
+def model_predictions():
+    
+    model = joblib.load(os.path.join(prod_deployment_path, "trainedmodel.pkl"), "r")
+
+    data = pd.read_csv(os.path.join(test_data_path, "testdata.csv"))
+    
+    X = data[["lastmonth_activity", "lastyear_activity", "number_of_employees"]]
     
     predictions = model.predict(X)
+    
     return predictions
 
 
 # Function to get summary statistics
-def dataframe_summary(X):
+def dataframe_summary():
     # calculate summary statistics here
-    statistics = X.describe()
+    model = joblib.load(os.path.join(prod_deployment_path, "trainedmodel.pkl"), "r")
+    data = pd.read_csv(os.path.join(test_data_path, "testdata.csv"))
+    X = data[["lastmonth_activity", "lastyear_activity", "number_of_employees"]]
+    
+    columns = X.columns
+    
+    statistics = {}
+    
+    for column in columns:
+        mean = X[column].mean()
+        median = X[column].median()
+        std = X[column].std()
+        statistics[column] = {"mean": mean, "median": median, "std": std}
+
     return statistics
 
 # Function to get timings
@@ -40,19 +60,8 @@ def outdated_packages_list():
 
 
 if __name__ == '__main__':
-    
-    model = joblib.load(os.path.join(prod_deployment_path, "trainedmodel.pkl"), "r")
-
-    data = pd.read_csv(os.path.join(test_data_path, "testdata.csv"))
-    
-    X = data[["lastmonth_activity", "lastyear_activity", "number_of_employees"]]
-    
-    y = data["exited"]
-    
-    predictions = model_predictions(model, X)
-    statistics = dataframe_summary(X)
-    
-    print(statistics)
+    model_predictions()
+    dataframe_summary()
     # execution_time()
     # outdated_packages_list()
 
