@@ -74,11 +74,21 @@ def missing_values_ptg():
 # Function to get timings
 def execution_time():
     # calculate timing of training.py and ingestion.py
-    return  # return a list of 2 timing values in seconds
+    timing_values = {
+        "training.py": None,
+        "ingestion.py": None
+    }
+
+    for script in timing_values.keys():
+        start_time = timeit.default_timer()
+        os.system('python {}'.format(script))
+        timing = timeit.default_timer() - start_time
+        timing_values[script] = timing
+
+    return timing_values
+
 
 # Function to check dependencies
-
-
 def outdated_packages_list():
     pass
     # get a list of
@@ -88,5 +98,5 @@ if __name__ == '__main__':
     model_predictions()
     dataframe_summary()
     missing_values_ptg()
-    # execution_time()
+    execution_time()
     # outdated_packages_list()
