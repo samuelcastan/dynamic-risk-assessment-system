@@ -22,7 +22,9 @@ def train_model():
     X = df[['lastmonth_activity', 'lastyear_activity', 'number_of_employees']]
 
     model = RandomForestClassifier(
-        n_estimators=1000
+        n_estimators=1000,
+        n_jobs=-1,
+        random_state=42
     )
 
     # fit the model to your data
