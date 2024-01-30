@@ -4,6 +4,7 @@ import timeit
 import os
 import json
 import joblib
+import subprocess
 
 # Load config.json and get environment variables
 with open('config.json', 'r') as f:
@@ -91,7 +92,15 @@ def execution_time():
 # Function to check dependencies
 def outdated_packages_list():
     pass
-    # get a list of
+
+    result = subprocess.run(['pip', 'list', '--outdated'], capture_output=True, text=True)
+
+    if result.returncode == 0:
+        # Save the results to a text file
+        with open('outdated_packages.txt', 'w') as file:
+            file.write(result.stdout)
+    else:
+        print("Failed to check for outdated packages. Error:", result.stderr)
 
 
 if __name__ == '__main__':
@@ -99,4 +108,4 @@ if __name__ == '__main__':
     dataframe_summary()
     missing_values_ptg()
     execution_time()
-    # outdated_packages_list()
+    outdated_packages_list()
