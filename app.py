@@ -37,22 +37,21 @@ def predict():
     return jsonify(predictions)
 
 
+# Scoring Endpoint
+@app.route("/scoring", methods=['GET', 'OPTIONS'])
+def stats():
+    # check the score of the deployed model
+
+    return  # add return value (a single F1 score number)
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000, debug=True, threaded=True)
 
 
-# Scoring Endpoint
 
-
-# @app.route("/scoring", methods=['GET', 'OPTIONS'])
-# def stats():
-#     # check the score of the deployed model
-
-#     return  # add return value (a single F1 score number)
 
 # # Summary Statistics Endpoint
-
-
 # @app.route("/summarystats", methods=['GET', 'OPTIONS'])
 # def stats():
 #     # check means, medians, and modes for each column
