@@ -16,7 +16,7 @@ prod_deployment_path = os.path.join(config["prod_deployment_path"])
 
 
 # Function to get model predictions
-def model_predictions():
+def model_predictions(data_path=os.path.join(test_data_path, "testdata.csv")):
 
     model = joblib.load(
         os.path.join(
@@ -24,7 +24,7 @@ def model_predictions():
             "trainedmodel.pkl"),
         "r")
 
-    data = pd.read_csv(os.path.join(test_data_path, "testdata.csv"))
+    data = pd.read_csv(data_path)
 
     X = data[["lastmonth_activity",
               "lastyear_activity",
@@ -32,7 +32,7 @@ def model_predictions():
 
     predictions = model.predict(X)
 
-    return predictions
+    return predictions.tolist()
 
 
 # Function to get summary statistics
