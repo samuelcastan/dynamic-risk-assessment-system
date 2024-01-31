@@ -2,6 +2,7 @@ from flask import Flask, session, jsonify, request
 import pandas as pd
 import numpy as np
 from diagnostics import model_predictions, dataframe_summary, missing_values_ptg
+from scoring import score_model
 import json
 import os
 
@@ -42,7 +43,10 @@ def predict():
 def stats():
     # check the score of the deployed model
 
-    return  # add return value (a single F1 score number)
+    f1_score = score_model()
+
+    return jsonify(f1_score) # add return value (a single F1 score number)
+
 
 
 if __name__ == "__main__":
