@@ -44,9 +44,15 @@ def stats():
     # check the score of the deployed model
 
     f1_score = score_model()
+    return jsonify(f1_score)
 
-    return jsonify(f1_score) # add return value (a single F1 score number)
 
+# Summary Statistics Endpoint
+@app.route("/summarystats", methods=['GET', 'OPTIONS'])
+def summary_stats():
+    # check means, medians, and modes for each column
+    statistics = dataframe_summary()
+    return statistics
 
 
 if __name__ == "__main__":
@@ -55,11 +61,6 @@ if __name__ == "__main__":
 
 
 
-# # Summary Statistics Endpoint
-# @app.route("/summarystats", methods=['GET', 'OPTIONS'])
-# def stats():
-#     # check means, medians, and modes for each column
-#     return  # return a list of all calculated summary statistics
 
 # # Diagnostics Endpoint
 
