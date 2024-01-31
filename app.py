@@ -1,7 +1,7 @@
 from flask import Flask, session, jsonify, request
 import pandas as pd
 import numpy as np
-from diagnostics import model_predictions, dataframe_summary, missing_values_ptg
+from diagnostics import model_predictions, dataframe_summary, missing_values_ptg, execution_time
 from scoring import score_model
 import json
 import os
@@ -55,17 +55,20 @@ def summary_stats():
     return statistics
 
 
+# Diagnostics Endpoint
+@app.route("/diagnostics", methods=['GET', 'OPTIONS'])
+def diagnostics():
+    # check timing and percent NA values
+    na_percentages = missing_values_ptg()
+    timing_values = execution_time()
+
+    result = {
+        "na_percetange": na_percentages,
+        "timing_values": timing_values
+    }
+
+    return result
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000, debug=True, threaded=True)
-
-
-
-
-
-# # Diagnostics Endpoint
-
-
-# @app.route("/diagnostics", methods=['GET', 'OPTIONS'])
-# def stats():
-#     # check timing and percent NA values
-#     return  # add return value for all diagnostics

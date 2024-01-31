@@ -69,7 +69,7 @@ def missing_values_ptg():
 
     percentages = (X.isna().sum() / length) * 100
 
-    return percentages
+    return percentages.to_dict()
 
 
 # Function to get timings

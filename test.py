@@ -5,7 +5,7 @@ data = {
 }
 
 # Make a POST request to the "/prediction" endpoint
-response = requests.get("http://0.0.0.0:8000/scoring")
+response = requests.get("http://0.0.0.0:8000/diagnostics")
 
 # response = requests.post("http://0.0.0.0:8000/prediction")
 
