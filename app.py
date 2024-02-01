@@ -35,7 +35,7 @@ def predict():
     # Call the model_predictions function with the specified data_path
     predictions = model_predictions(data_path)
     # Return the predictions as JSON
-    return jsonify(predictions)
+    return json.dumps(predictions)
 
 
 # Scoring Endpoint

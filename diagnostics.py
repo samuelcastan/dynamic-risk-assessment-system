@@ -67,6 +67,7 @@ def missing_values_ptg():
 
     length = len(X)
 
+
     percentages = (X.isna().sum() / length) * 100
 
     return percentages.to_dict()
