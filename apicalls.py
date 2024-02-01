@@ -1,4 +1,5 @@
 import requests
+import json
 
 # Specify a URL that resolves to your workspace
 URL = "http://0.0.0.0:8000/"
@@ -21,4 +22,5 @@ responses = {
     "diagnostics": response4
 }
 
-print(responses)
+with open("apireturns.json", "w") as file:
+    json.dump(responses, file)
