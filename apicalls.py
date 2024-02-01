@@ -4,7 +4,7 @@ import requests
 URL = "http://0.0.0.0:8000/"
 
 data = {
-    "data_path", "testdata.csv"
+    "data_path": "testdata/testdata.csv"
 }
 
 # Call each API endpoint and store the responses
