@@ -44,7 +44,7 @@ def stats():
     # check the score of the deployed model
 
     f1_score = score_model()
-    return jsonify(f1_score)
+    return json.dumps(f1_score)
 
 
 # Summary Statistics Endpoint
@@ -52,7 +52,7 @@ def stats():
 def summary_stats():
     # check means, medians, and modes for each column
     statistics = dataframe_summary()
-    return statistics
+    return json.dumps(statistics)
 
 
 # Diagnostics Endpoint
